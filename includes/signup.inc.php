@@ -11,17 +11,18 @@ if(isset($_POST['signup-submit'])) {
 
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $uname = mysqli_real_escape_string($conn, $_POST['uname']);
-    $first = mysqli_real_escape_string($conn, $_POST['first']);
+    $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
     $surname = mysqli_real_escape_string($conn, $_POST['surname']);
     $pwd = mysqli_real_escape_string($conn, $_POST['pwd']);
     $pwdRepeat = mysqli_real_escape_string($conn, $_POST['pwd-repeat']);
 
     //Error handlers
     //Check for empty fields
-    if (empty($email) ||  empty($uname) ||empty($first) || empty($surname) || empty($pwd) || empty($pwdRepeat)) {
+    if (empty($email) ||  empty($uname) ||empty($firstname) || empty($surname) || empty($pwd) || empty($pwdRepeat)) {
         header("Location: ../signup.php?error=emptyfields&uname=".$uname."&email=".$email);
         exit();
     }
+    //Doesn't contain anything else but a-zA-Z
     else if (!filter_var($email, FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $uname)) {
         header("Location: ../signup.php?error=invalidmail&uname");
         exit();
@@ -42,11 +43,10 @@ if(isset($_POST['signup-submit'])) {
     and prepared statement to be safe
     */
     else {
-
-        $sql = "SELECT username FROM tinder WHERE username=?";
+        $sql = "SELECT uname FROM users WHERE uname=?";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
-            header("Location: ../signup.php?error=sqlerror");
+            header("Location: ../signup.php?error=mysql_error");
             exit();
         }
         else {
@@ -62,11 +62,11 @@ if(isset($_POST['signup-submit'])) {
             }
             else {
 
-                $sql = "INSERT INTO tinder (email, username, firstname, surname, pwd) VALUES (?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO users (email, uname, firstname, surname, pwd) VALUES (?, ?, ?, ?, ?)";
 
                 $stmt = mysqli_stmt_init($conn);
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
-                    header("Location: ../signup.php?error=sqlerror");
+                    header("Location: ../signup.php?error=sql_insert_error");
                     exit();
                 }
                 else {
@@ -76,7 +76,7 @@ if(isset($_POST['signup-submit'])) {
                 */
                 $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 
-                mysqli_stmt_bind_param($stmt, "sssss", $email, $uname, $first, $surname, $hashedPwd);
+                mysqli_stmt_bind_param($stmt, "sssss", $email, $uname, $firstname, $surname, $hashedPwd);
                 mysqli_stmt_execute($stmt);
                 header("Location: ../signup.php?signup=success");
                 exit();
@@ -89,5 +89,6 @@ if(isset($_POST['signup-submit'])) {
     mysqli_close($conn);
 }
 else {
-    
+    header("Location: ../signup.php");
+    exit();
 }
