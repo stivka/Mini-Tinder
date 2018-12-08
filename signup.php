@@ -6,6 +6,21 @@ require "header.php";
     <div class="wrapper-main">
         <section class="section-default">
             <h1>Signup</h1>
+            <?php
+                if(isset($_GET['error'])) {
+                    if($_GET['error'] == "emptyfields") {
+                        echo '<p class="signuperror">Fill in all fields!</p>';
+                    }
+                    else if($_GET['error'] == "invaliduname") {
+                        echo '<p class="signuperror">Fill in all fields!</p>';
+                    }
+                }
+                else if(isset($_GET['signup'])) {
+                    if($_GET['signup']  == "success") {
+                    echo '<p class="signupsuccess">Signup successful!</p>';
+                    }
+                }
+            ?>
             <form action="includes/signup.inc.php" method="post">
                 <input type="text" name="uname" placeholder="Username">
                 <input type="text" name="email" placeholder="E-mail">

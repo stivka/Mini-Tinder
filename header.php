@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,19 +18,26 @@
             <img src="img/canes.png" alt="logo">
         </a>
         <ul>
-            <li><a href="index.php">Home</li>
-            <li><a href="select.php">Sql select</li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="select.php">Sql select</a></li>
         </ul>
-        <div>
-            <form action="includes/login.inc.php" method="post">
-                <input type="text" name="uname" placeholder="Username">
-                <input type="password" name="pwd" placeholder="Password">
-                <button type="submit" name="login-submit">Login</button>
-            </form>
-            <a href="signup.php">Signup</a>
-            <form action="includes/logout.inc.php" method="post">
-                <button type="submit" name="logout-submit">Logout</button>
-            </form>
-        </div>
     </nav>
+        <div class="header-login">
+            <?php
+                if (isset($_SESSION['userId'])) {
+                    echo '<form action="includes/logout.inc.php" method="post">
+                    <button type="submit" name="logout-submit">Logout</button>
+                </form>';
+                  }
+                  else {
+                    echo '<form action="includes/login.inc.php" method="post">
+                    <input type="text" name="uname" placeholder="Username">
+                    <input type="password" name="pwd" placeholder="Password">
+                    <button type="submit" name="login-submit">Login</button>
+                </form>
+                <a href="signup.php">Signup</a>';
+                  }
+            ?>
+            
+        </div>
 </header>

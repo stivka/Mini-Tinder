@@ -36,7 +36,7 @@ if(isset($_POST['signup-submit'])) {
         exit();
     }
     else if ($pwd !== $pwdRepeat) {
-        header("Location: ../signup.php?error=passwordcheckuname=".$uname."&email=".$email);
+        header("Location: ../signup.php?error=passwordcheck&uname=".$uname."&email=".$email);
         exit();
     }
     /*username is already taken, this needs cnnxion to database
