@@ -1,0 +1,11 @@
+DROP TABLE t155233_users;
+
+CREATE TABLE t155233_users(
+id INT(11) AUTO_INCREMENT,
+email VARCHAR(50),
+uname VARCHAR(50),
+firstname VARCHAR(50),
+surname VARCHAR(50),
+pwd VARCHAR(60),
+PRIMARY KEY(id)
+);

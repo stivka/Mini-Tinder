@@ -1,4 +1,18 @@
 <?php 
+
+$dbServerName = "localhost";
+$dbUsername = "st2014";
+$dbPassword = "progress";
+$dbName = "st2014";
+
+$usersTable = "t155233_users";
+
+$conn = mysqli_connect($config, $dbUsername, $dbPassword, $dbName);
+
+if (!$conn) {
+    die("Connection to sql failed: ".mysqli_connect_error());
+}
+
 /*
 
 $dbServerName = "localhost";
@@ -12,7 +26,7 @@ if (!$conn) {
     die("Connection to sql failed: ".mysqli_connect_error());
 }
 
-*/
+----------- Above line LOCAL and below SERVER cnnxion ---------------
 
 class SQLconnection
 {
@@ -24,3 +38,5 @@ class SQLconnection
         return new PDO($config, $username, $password);
     }
 }
+*/
+

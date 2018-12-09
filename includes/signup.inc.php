@@ -43,7 +43,7 @@ if(isset($_POST['signup-submit'])) {
     and prepared statement to be safe
     */
     else {
-        $sql = "SELECT uname FROM users WHERE uname=?";
+        $sql = "SELECT uname FROM $usersTable WHERE uname=?";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
             header("Location: ../signup.php?error=mysql_error");
@@ -62,7 +62,7 @@ if(isset($_POST['signup-submit'])) {
             }
             else {
 
-                $sql = "INSERT INTO users (email, uname, firstname, surname, pwd) VALUES (?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO $usersTable (email, uname, firstname, surname, pwd) VALUES (?, ?, ?, ?, ?)";
 
                 $stmt = mysqli_stmt_init($conn);
                 if (!mysqli_stmt_prepare($stmt, $sql)) {

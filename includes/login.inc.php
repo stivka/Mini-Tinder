@@ -11,7 +11,7 @@ if (isset($_POST['login-submit'])) {
     }
     else {
         // again to be secure, with placeholders and prepared statements
-        $sql = "SELECT * FROM users WHERE uname=?";
+        $sql = "SELECT * FROM $usersTable WHERE uname=?";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
             header("Location: ../index.php?error=sql_select_query");
