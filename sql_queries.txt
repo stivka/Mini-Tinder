@@ -9,3 +9,9 @@ surname VARCHAR(50),
 pwd VARCHAR(60),
 PRIMARY KEY(id)
 );
+
+CREAT TABLE t155233_photos(
+id INT(11) NOT NULL AUTO_INCREMENT,
+filename VARCHAR(100),
+PRIMARY KEY(id),
+);

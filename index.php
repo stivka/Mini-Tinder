@@ -3,15 +3,21 @@
 ?>
 
 <main>
+    </nav>
+        <div class="header-login">
     <div class="wrapper-main">
         <section>
-            <p>Merry fucking christmas</p>
-            <?php
+              <?php
               if (isset($_SESSION['userId'])) {
-                echo '<p class="login-status">You are logged in!</p>';
+                echo '<form action="includes/upload.inc.php" method="post" 
+                enctype="multipart/form-data">
+                Select photo upload:
+                <input type="file" name="fileToUpload" id="fileToUpload">
+                <input type="submit" value="Upload Image" name="submit">
+            </form>';
               }
               else {
-                echo '<p class="login-status">You are logged out!</p>';
+                
               }
             ?>            
         </section>
