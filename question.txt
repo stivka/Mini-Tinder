@@ -1,2 +1,2 @@
 Shouldn't my user passwords be shown as hashed values, when observing my rows in phpmyadmin?
-
+  

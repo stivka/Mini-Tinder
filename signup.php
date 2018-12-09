@@ -12,7 +12,7 @@ require "header.php";
                         echo '<p class="signuperror">Fill in all fields!</p>';
                     }
                     else if($_GET['error'] == "invaliduname") {
-                        echo '<p class="signuperror">Fill in all fields!</p>';
+                        echo '<p class="signuperror">Username exists</p>';
                     }
                 }
                 else if(isset($_GET['signup'])) {
