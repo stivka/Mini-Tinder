@@ -7,7 +7,7 @@ $dbName = "st2014";
 
 $usersTable = "t155233_users";
 
-$conn = mysqli_connect($config, $dbUsername, $dbPassword, $dbName);
+$conn = mysqli_connect($dbServerName, $dbUsername, $dbPassword, $dbName);
 
 if (!$conn) {
     die("Connection to sql failed: ".mysqli_connect_error());
