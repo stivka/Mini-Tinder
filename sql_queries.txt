@@ -8,11 +8,40 @@ pwd VARCHAR(60),
 PRIMARY KEY(id)
 );
 
-CREATE TABLE t155233_photos(
+CREATE TABLE t155233_likes(
 id INT(11) NOT NULL AUTO_INCREMENT,
-filename VARCHAR(100),
+uid INT(11),
+likes INT(11),
+PRIMARY KEY(id),
+FOREIGN KEY (uid) REFERENCES t155233_users(id)
+);
+
+CREATE TABLE t155233_dislikes(
+id INT(11) NOT NULL AUTO_INCREMENT,
+uid INT(11),
+dislikes INT(11),
 PRIMARY KEY(id)
 );
- 
+
+CREATE TABLE t155233_rated(
+id INT(11) NOT NULL AUTO_INCREMENT,
+uid INT(11),
+rated INT(11),
+PRIMARY KEY(id)
+);
+
 ALTER TABLE t155233_users
-ADD photo_filename VARCHAR(100);
+ADD description VARCHAR(500),
+ADD sex VARCHAR(6);
+
+ALTER TABLE t155233_users 
+CHANGE sex gender VARCHAR(6);
+
+// Sets donna to like ben
+// and dislike hose
+INSERT INTO t155233_rated(uid, rated)
+VALUES (1, 5);
+
+ALTER TABLE t155233_likes
+ADD CONSTRAINT FK_UserLikes
+FOREIGN KEY (uid) REFERENCES t155233_users(id);

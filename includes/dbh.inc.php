@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $dbServerName = "localhost";
 $dbUsername = "st2014";
