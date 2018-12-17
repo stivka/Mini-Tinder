@@ -55,3 +55,5 @@ SELECT id, gender, photo_filename
 FROM t155233_users
 WHERE id NOT IN (SELECT rated
 FROM t155233_rated WHERE uid = 2) AND id <> 2 AND gender != 'male';
+
+show tables like 't155233\_%';
