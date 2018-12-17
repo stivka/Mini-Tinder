@@ -59,13 +59,17 @@
                             $gender = $row["gender"];
                         }
                     }
+
+                    echo $gender;
                     
                     
                     $sql = "SELECT id, gender, photo_filename
                             FROM t155233_users
-                            WHERE id not in
-                            (SELECT rated
-                            FROM t155233_rated) AND gender <> $gender
+                            WHERE gender != '$gender'
+                            AND id NOT IN (SELECT rated
+                            FROM t155233_rated WHERE uid <> $uid)
+                            
+                            
                     ;";
 
                     $result = mysqli_query($conn, $sql);                        
@@ -74,9 +78,9 @@
                         // output data of each row
                         $unratedUsers = array();
                         while($row = mysqli_fetch_assoc($result)) {
-                            /* 
-                            echo "id that isn't rated: " . $row["id"]. " photo's filename " . $row['photo_filename'] . "<br>";
-                            */
+                             
+                            echo "id that isn't rated: " . $row["rated"]. " photo's filename " . $row['photo_filename'] . "<br>";
+                            
                             array_push($unratedUsers, $row['photo_filename']);
                         }
                         echo print_r($unratedUsers);
