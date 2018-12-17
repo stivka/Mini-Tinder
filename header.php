@@ -23,12 +23,13 @@ session_start();
 
 <header>
     <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand " href="#">
+        <a class="navbar-brand " href="index.php">
             <img id="logo" src="img/canes.png" width="30" height="30" alt="TinderCanes logo">
         </a>
             <?php
 if (isset($_SESSION['userId'])) {
-    echo '      <p class="login-status">Merry Xmas ' . $_SESSION['uname'] . ' ;)</p>
+    echo '      <p class="login-status d-flex justify-content-center">Merry Xmas ' . $_SESSION['uname'] . ' ;)</p>
+                <a href="mutual.php">Mutually liked</a>
                 <form action="includes/logout.inc.php" method="post">
                     <button type="submit" name="logout-submit">Logout</button>
                 </form>';

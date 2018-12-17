@@ -29,17 +29,20 @@ function findUserIdOfPersonInPicture($filename) {
     // output data of each row
         while($row = $result->fetch_assoc()) {
             echo "id of the rated person is: " . $row["id"]. "<br>";
+            $ratedPersonId = $row["id"];
         }
     } else {
         echo "0 results";
     }
     $conn->close();
+    return $ratedPersonId;
 }
     
 function insertIntoLikes($ratedPersonId) {
     require "dbh.inc.php";
+    $uid = $_SESSION['userId'];
 
-    $sql = "INSERT INTO t155233_likes (uid, likes) VALUES ($uid, $ratedPersonId)";
+    $sql = "INSERT INTO t155233_likes (uid, likes) VALUES ($uid, $ratedPersonId);";
 
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
@@ -51,8 +54,11 @@ function insertIntoLikes($ratedPersonId) {
 
 function insertIntoRated($ratedPersonId) {
     require "dbh.inc.php";
-    
-    $sql = "INSERT INTO t155233_rated (uid, rated) VALUES ($uid, $ratedPersonId)";
+    $uid = $_SESSION['userId'];
+
+    echo 'inside insert function ' . $ratedPersonId;
+
+    $sql = "INSERT INTO t155233_rated (uid, rated) VALUES ($uid, $ratedPersonId);";
 
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";

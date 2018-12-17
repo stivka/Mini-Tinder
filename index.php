@@ -89,9 +89,8 @@
                                     <img src="../uploads/' . $user_picture . '" alt="' . $user_picture . '"/>
                                     </div>
                                     <form id="likeButtons" action="includes/rate.inc.php" method="post" class="my-auto" style="padding: 4px;">
-                                        <input type="image" src="img/kiss.png" name="like-submit" value="' . $user_picture . '"  alt="kiss" style="display: block"height="42" width="42"/>
-                                        
-                                        <button type="submit" name="dislike-submit" style="display: block" value="' . $user_picture .'">Next</button>
+                                        <button type="submit" name="like-submit" value="' . $user_picture .'"style="display: block" >Like</button>
+                                        <button type="submit" name="dislike-submit" value="' . $user_picture .'"style="display: block" >Next</button>
                                     </form>
                                 </div>';
                         }
