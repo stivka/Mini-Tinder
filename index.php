@@ -6,7 +6,7 @@
 <main>
     </nav>
         <div class="header-login">
-    <div class="wrapper-main">
+    <div class="wrapper-main container h-100 d-flex justify-content-center">
         <section>
               <?php
               if (isset($_SESSION['userId'])) {
@@ -65,7 +65,7 @@
                     $sql = "SELECT id, gender, photo_filename
                             FROM t155233_users
                             WHERE id NOT IN (SELECT rated
-                            FROM t155233_rated WHERE uid = $uid) AND id <> 2$uid AND gender != '$gender';";
+                            FROM t155233_rated WHERE uid = $uid) AND id <> $uid AND gender != '$gender';";
                             
                      $result = mysqli_query($conn, $sql);                        
                 
@@ -81,8 +81,15 @@
                         echo print_r($unratedUsers);
                         if (!empty($unratedUsers)) {
                             error_reporting(0);
-                            echo '<img src="../uploads/' . $unratedUsers[0] . '" alt="' . $unratedUsers . '>"';
-                            echo '<img src="img/kiss.png" alt="kiss">';
+                            echo '<div id="picture_and_buttons" class="row" style="display: flex">
+                                    <div>
+                                    <img src="../uploads/' . $unratedUsers[0] . '" alt="' . $unratedUsers . '"/>
+                                    </div>
+                                    <div id="likeButtons" class="my-auto" style="padding: 4px;">
+                                        <img id="kissButton" src="img/kiss.png" alt="kiss" style="display: block"height="42" width="42"/>
+                                        <button style="display: block" type="button">Next</button>
+                                    </div>
+                                </div>';
                         }
                     } else {
                         echo "0 results";
