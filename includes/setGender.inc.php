@@ -22,3 +22,5 @@ if (isset($_POST["set_gender"])) {
 } else {
     echo "Sorry, there was an error setting your gender.";
 }
+
+echo '<br><a href="../index.php">Back to page</a>';

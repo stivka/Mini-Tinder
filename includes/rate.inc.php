@@ -45,9 +45,9 @@ function insertIntoLikes($ratedPersonId) {
     $sql = "INSERT INTO t155233_likes (uid, likes) VALUES ($uid, $ratedPersonId);";
 
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        // echo "New record created successfully";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        //echo "Error: " . $sql . "<br>" . $conn->error;
     }
     $conn->close();
 }
@@ -56,7 +56,7 @@ function insertIntoRated($ratedPersonId) {
     require "dbh.inc.php";
     $uid = $_SESSION['userId'];
 
-    echo 'inside insert function ' . $ratedPersonId;
+    //echo 'inside insert function ' . $ratedPersonId;
 
     $sql = "INSERT INTO t155233_rated (uid, rated) VALUES ($uid, $ratedPersonId);";
 
@@ -67,3 +67,5 @@ function insertIntoRated($ratedPersonId) {
     }
     $conn->close();
 }
+
+header('Location: ../index.php');

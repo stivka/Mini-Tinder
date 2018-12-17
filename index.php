@@ -60,7 +60,7 @@
                         }
                     }
 
-                    echo "user with id: " .$uid . " is " . $gender . "<br>";
+                    // echo "user with id: " .$uid . " is " . $gender . "<br>";
                     
                     $sql = "SELECT id, gender, photo_filename
                             FROM t155233_users
@@ -74,11 +74,11 @@
                         $unratedUsers = array();
                         while($row = mysqli_fetch_assoc($result)) {
                              
-                            echo "id that isn't rated: " . $row["id"]. " photo's filename " . $row['photo_filename'] . "<br>";
+                            //echo "id that isn't rated: " . $row["id"]. " photo's filename " . $row['photo_filename'] . "<br>";
                             
                             array_push($unratedUsers, $row['photo_filename']);
                         }
-                        echo print_r($unratedUsers);
+                        // echo print_r($unratedUsers);
                         if (!empty($unratedUsers)) {
                             error_reporting(0);
                             
@@ -95,7 +95,7 @@
                                 </div>';
                         }
                     } else {
-                        echo "0 results";
+                        echo "No new mugs to choose from :/ Just continue enjoying your exciting Christmas.";
                     }
 
 
